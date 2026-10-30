@@ -1,9 +1,3 @@
-> [!NOTE]
-> **Mirror for reproduction study / 复现学习镜像** — Copied from [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101).
-> The research, videos and results below belong to atomictan and the original contributors.
-> Independent reproduction by UKplus8HRS has not been run or verified here.
-> See [provenance, license and asset notes](MIRROR.md).
-
 <h1 align="center">SO-101: Imitation Learning → Reinforcement Learning on a Real Robot Arm</h1>
 
 <p align="center">
