@@ -1,39 +1,46 @@
-<h1 align="center">SO-101: Imitation Learning → Reinforcement Learning on a Real Robot Arm</h1>
+<h1 align="center">Reproducing SO-101: Imitation Learning → Reinforcement Learning on a Real Robot Arm</h1>
 
 <p align="center">
-  Teaching a 5-DOF desk robot arm to pick up a tube — first by imitation, then by
+  A reproduction of <a href="https://github.com/atomictan/lerobot-so101">atomictan/lerobot-so101</a>:
+  teaching a 5-DOF desk robot arm to pick up a tube — first by imitation, then by
   reinforcement learning — on physical hardware, end to end.
 </p>
+
+<p align="center"><sub>Original research, data and results by atomictan · Reproduction by UKplus8HRS</sub></p>
 
 <p align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="License: Apache-2.0"></a>
   <img src="https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white" alt="Python 3.12+">
   <a href="https://github.com/huggingface/lerobot"><img src="https://img.shields.io/badge/built%20on-%F0%9F%A4%97%20LeRobot-yellow" alt="Built on LeRobot"></a>
   <a href="https://huggingface.co/datasets/Atomictan/grab_tube_merged_v3"><img src="https://img.shields.io/badge/dataset-grab__tube__merged__v3-orange?logo=huggingface" alt="Dataset"></a>
-  <a href="./MIRROR.md"><img src="https://img.shields.io/badge/reproduction-not%20yet%20verified-lightgrey" alt="Reproduction status: not yet verified"></a>
+  <a href="#-my-reproduction"><img src="https://img.shields.io/badge/reproduction-planned-lightgrey" alt="Reproduction status: planned"></a>
 </p>
 
 <p align="center">
   <img src="./media/so101/grab_tube.webp" alt="SO-101 arm picking up a tube and dropping it into a bin" width="560">
   <br>
-  <em>One teleoperated demonstration from the training dataset (side camera).<br>
-  An ACT policy trained on these 118 episodes reaches 96.7% success over 30 trials.</em>
+  <em>One teleoperated demonstration from the original training dataset (side camera).<br>
+  In the original project, an ACT policy trained on these 118 episodes reached 96.7% success over 30 trials.</em>
 </p>
 
 <p align="center">
   <a href="#-at-a-glance">At a glance</a> ·
-  <a href="#-results">Results</a> ·
+  <a href="#-my-reproduction">My reproduction</a> ·
+  <a href="#-original-results">Original results</a> ·
   <a href="#-whats-here">What's here</a> ·
   <a href="#-fixes-to-upstream-lerobot">Fixes</a> ·
-  <a href="#-reproducing">Reproducing</a> ·
+  <a href="#-how-to-reproduce">How to reproduce</a> ·
   <a href="#-中文简介">中文简介</a>
 </p>
 
 ---
 
-This is a working fork of [🤗 LeRobot](https://github.com/huggingface/lerobot) containing a
-single hobbyist's research project: the tooling built along the way, sixteen fixes to the
-upstream RL stack, and a written record of what worked and what didn't.
+This repository is my reproduction of [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101),
+a working fork of [🤗 LeRobot](https://github.com/huggingface/lerobot) that records one hobbyist's
+research project: the tooling built along the way, sixteen fixes to the upstream RL stack, and a
+written record of what worked and what didn't. I'm re-running the experiments and documenting my
+own results in [My reproduction](#-my-reproduction). Everything under
+[Original results](#-original-results) is atomictan's work.
 
 ## 📌 At a glance
 
@@ -41,11 +48,27 @@ upstream RL stack, and a written record of what worked and what didn't.
 |---|---|
 | **Robot** | SO-101 (5-DOF, two cameras: wrist + side) |
 | **Task** | "Grab the tube" — pick a tube from a mat, drop it in a bin |
-| **Best real-hardware result** | **96.7%** success (29/30) with ACT |
+| **Original project** | [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101) |
+| **Original best real-hardware result** | **96.7%** success (29/30) with ACT |
 | **Dataset** | [`Atomictan/grab_tube_merged_v3`](https://huggingface.co/datasets/Atomictan/grab_tube_merged_v3) — 118 episodes, public |
 | **Upstream README** | [UPSTREAM_README.md](./UPSTREAM_README.md) |
 
-## 📊 Results
+## 🧪 My reproduction
+
+Status: **planned — no runs yet**. Results are added here only after I run them myself.
+
+| Experiment | Original | Mine | Hardware / notes |
+|------------|---------:|-----:|------------------|
+| ACT v5 on `grab_tube_merged_v3`, real SO-101 | 96.7% (29/30) | — | — |
+| SAC / HIL-SERL, `gym_hil` pick-cube (sim) | 0% → 100% in 1,104 episodes | — | — |
+| SAC / HIL-SERL, real SO-101 | stalled at ~2,600 transitions | — | — |
+
+Log for each run: date, hardware (GPU, robot, cameras), exact command and commit, evaluation
+protocol, result, and what differed from the original.
+
+## 📊 Original results
+
+> These results were reported by atomictan in the original project.
 
 ### Imitation learning (ACT), real hardware — 40% → 96.7%
 
@@ -118,7 +141,7 @@ logging paths the rest of the code assumes. **Most raised no error at all:**
 See [`PROJECT_LOG.md`](./scripts/learning/PROJECT_LOG.md#4-sixteen-fixes-to-the-library-itself)
 for the full list.
 
-## 🚀 Reproducing
+## 🚀 How to reproduce
 
 Standard LeRobot installation from source — see [UPSTREAM_README.md](./UPSTREAM_README.md).
 The project scripts additionally expect an SO-101 URDF and meshes; paths are set at the top
@@ -160,11 +183,11 @@ For the SO-101 hardware steps (finding ports, calibration, teleoperation, record
 <details>
 <summary>点击展开</summary>
 
-本仓库是 [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101) 的**复现学习镜像**，
-基于 Hugging Face 的 [LeRobot](https://github.com/huggingface/lerobot) 库。下文所有实验、视频和结果
-均归原作者所有，本镜像尚未独立复现。
+本仓库是我对 [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101) 的**复现项目**，
+基于 Hugging Face 的 [LeRobot](https://github.com/huggingface/lerobot) 库。“原始结果”中的实验、视频和数据
+均归原作者 atomictan 所有；我自己的复现进展和结果记录在 [My reproduction](#-my-reproduction) 一节。
 
-**项目内容**：用 5 自由度的 SO-101 机械臂（腕部和侧面两个摄像头）在真机上完成“抓试管放进盒子”任务。
+**原项目内容**：用 5 自由度的 SO-101 机械臂（腕部和侧面两个摄像头）在真机上完成“抓试管放进盒子”任务。
 
 - **模仿学习（ACT）**：模型和超参数不变，只通过“评估 → 诊断失败 → 补采数据 → 重训”迭代数据，
   真机成功率从 40%（50 条示教）提升到 **96.7%**（118 条示教，29/30）。
@@ -175,11 +198,18 @@ For the SO-101 hardware steps (finding ports, calibration, teleoperation, record
 
 **从哪里开始**：先读 [PROJECT_LOG.md](./scripts/learning/PROJECT_LOG.md)，再看
 [`scripts/learning/`](./scripts/learning/) 中的工具和 [`cmd_list`](./cmd_list) 中的实际命令。
-复现说明见 [MIRROR.md](MIRROR.md)。
+来源与许可说明见 [MIRROR.md](MIRROR.md)。
 
 </details>
 
+## 🙏 Credits
+
+- Original SO-101 research, dataset, demonstrations and results: **atomictan** and the original
+  contributors — [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101).
+- Underlying library: [🤗 LeRobot](https://github.com/huggingface/lerobot) by Hugging Face and its contributors.
+- Snapshot details and asset notes: [MIRROR.md](MIRROR.md).
+
 ## 📄 License
 
-Apache-2.0, as upstream. LeRobot is © Hugging Face and its contributors; this fork's
-additions are under the same license.
+Apache-2.0, as upstream. LeRobot is © Hugging Face and its contributors; the original project's
+additions and this reproduction's additions are under the same license.
