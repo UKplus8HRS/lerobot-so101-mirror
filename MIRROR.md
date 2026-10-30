@@ -31,8 +31,10 @@ mirror for reproduction study of
 - All **1,544 source commits**, original authorship metadata, and all **992 files**
   tracked at that commit are preserved. The source exposed one branch (`main`)
   and no tags.
-- Mirror changes: a provenance banner prepended to `README.md` and this file.
-  The original README body, code, configurations, fixtures and media are retained.
+- Mirror changes: a provenance banner prepended to `README.md`, a restyled README
+  layout (badges, navigation, a reproduction quickstart and a Chinese overview), and
+  this file. The original README content, code, configurations, fixtures and media
+  are retained.
 - This is a snapshot; automatic synchronization is not configured.
 
 ## License and notices
