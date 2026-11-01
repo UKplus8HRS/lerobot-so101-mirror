@@ -1,5 +1,3 @@
-> **Mirror for reproduction study / 复现学习镜像** — Copied from [atomictan/lerobot-so101](https://github.com/atomictan/lerobot-so101). The research, videos and results below belong to atomictan and the original contributors. Independent reproduction by UKplus8HRS has not been run or verified here. See [provenance, license and asset notes](MIRROR.md).
-
 # SO-101: Imitation Learning → Reinforcement Learning on a Real Robot Arm
 
 Teaching a 5-DOF desk robot arm to pick up a tube — first by imitation, then by
@@ -12,9 +10,9 @@ reinforcement learning — on physical hardware, end to end.
   An ACT policy trained on these 118 episodes reaches 96.7% success over 30 trials.</em>
 </p>
 
-This is a working fork of [🤗 LeRobot](https://github.com/huggingface/lerobot) containing a
-single hobbyist's research project: the tooling built along the way, sixteen fixes to the
-upstream RL stack, and a written record of what worked and what didn't.
+This repository is that project. It is a working fork of [🤗 LeRobot](https://github.com/huggingface/lerobot):
+the tooling built along the way, sixteen fixes to the upstream RL stack, and a written record
+of what worked and what didn't. The library itself remains LeRobot, © Hugging Face and its contributors.
 
 | | |
 |---|---|
@@ -105,4 +103,5 @@ of `build_offline_buffer.py` and `urdf_grid_check.py`.
 ## License
 
 Apache-2.0, as upstream. LeRobot is © Hugging Face and its contributors; this fork's
-additions are under the same license.
+additions are under the same license. Upstream, license, and asset notes are in
+[UPSTREAM.md](./UPSTREAM.md).
